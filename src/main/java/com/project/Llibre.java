@@ -1,5 +1,6 @@
 package com.project;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Llibre", 
 	uniqueConstraints = {@UniqueConstraint(columnNames = "llibreId")})
-public class Llibre {
+public class Llibre implements Serializable {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column(name = "llibreId", unique = true, nullable = false)
@@ -20,15 +21,14 @@ public class Llibre {
 	private String editorial;
 
     @ManyToOne
-    @JoinColumn(name="autorId", insertable=false,
-               updatable=false)
+    @JoinColumn(name="autorId", insertable = false, updatable = false)
     private Autor autor;
 
     @ManyToMany(mappedBy = "llibres")
     private Set<Biblioteca> biblioteques;
     
     @ManyToMany(mappedBy = "llibres")
-      private Set<Persona> persones;
+    private Set<Persona> persones;
 
     public Llibre() {}
     

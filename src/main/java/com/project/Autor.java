@@ -1,5 +1,6 @@
 package com.project;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Autor", 
 	uniqueConstraints = {@UniqueConstraint(columnNames = "autorId")})
-public class Autor {
+public class Autor implements Serializable {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column(name = "autorId", unique = true, nullable = false)
@@ -16,9 +17,9 @@ public class Autor {
 	@Column(name = "nom")
 	private String nom;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-     /*@JoinColumn(name="autorId")*/
-     private Set<Llibre> llibres;
+    @OneToMany
+    @JoinColumn(name="autorId")
+    private Set<Llibre> llibres;
 
     public Autor() {}
 

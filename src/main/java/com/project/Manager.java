@@ -223,7 +223,7 @@ public class Manager {
             if (tx!=null) tx.rollback();
             e.printStackTrace(); 
         } finally {
-            session.close(); 
+            // session.close(); 
         }
         return result;
     }

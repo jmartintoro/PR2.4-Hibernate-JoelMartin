@@ -1,6 +1,6 @@
 package com.project;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Biblioteca", 
 	uniqueConstraints = {@UniqueConstraint(columnNames = "bibliotecaId")})
-public class Biblioteca {
+public class Biblioteca implements Serializable {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column(name = "bibliotecaId", unique = true, nullable = false)
